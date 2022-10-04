@@ -18,6 +18,7 @@ import DiscussionTab from './course-home/discussion-tab/DiscussionTab';
 import appMessages from './i18n';
 import { UserMessagesProvider } from './generic/user-messages';
 
+import './output.css';
 import './index.scss';
 import OutlineTab from './course-home/outline-tab';
 import { CourseExit } from './courseware/course/course-exit';
@@ -36,8 +37,10 @@ import PathFixesProvider from './generic/path-fixes';
 import LiveTab from './course-home/live-tab/LiveTab';
 import CourseAccessErrorPage from './generic/CourseAccessErrorPage';
 
+
 subscribe(APP_READY, () => {
   ReactDOM.render(
+    
     <AppProvider store={initializeStore()}>
       <PathFixesProvider>
         <NoticesProvider>

@@ -5,12 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 
 import Footer from '@edx/frontend-component-footer';
+import { MyFooter } from '../footer/MyFooter';
+import { MyHeader } from '../header/MyHeader';
 import { Toast } from '@edx/paragon';
 import { LearningHeader as Header } from '@edx/frontend-component-header';
 import PageLoading from '../generic/PageLoading';
 import { getAccessDeniedRedirectUrl } from '../shared/access';
 import { useModel } from '../generic/model-store';
 
+import '../output.css'
 import genericMessages from '../generic/messages';
 import messages from './messages';
 import LoadedTabPage from './LoadedTabPage';
@@ -41,11 +44,12 @@ function TabPage({ intl, ...props }) {
   if (courseStatus === 'loading') {
     return (
       <>
-        <Header />
+        <MyHeader />
         <PageLoading
           srMessage={intl.formatMessage(messages.loading)}
         />
-        <Footer />
+        <MyFooter />
+        {/* <Footer /> */}
       </>
     );
   }
@@ -74,13 +78,14 @@ function TabPage({ intl, ...props }) {
           {toastHeader}
         </Toast>
         {metadataModel === 'courseHomeMeta' && (<LaunchCourseHomeTourButton srOnly />)}
-        <Header
+        <MyHeader
           courseOrg={org}
           courseNumber={number}
           courseTitle={title}
         />
         <LoadedTabPage {...props} />
-        <Footer />
+        {/* <Footer /> */}
+        <MyFooter />
       </>
     );
   }
@@ -88,11 +93,12 @@ function TabPage({ intl, ...props }) {
   // courseStatus 'failed' and any other unexpected course status.
   return (
     <>
-      <Header />
-      <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
+      <MyHeader />
+      <p className="text-center py-5 mx-auto tw-bg-red-500" style={{ maxWidth: '30em' }}>
         {intl.formatMessage(messages.failure)}
       </p>
-      <Footer />
+      {/* <Footer /> */}
+      <MyFooter />
     </>
   );
 }

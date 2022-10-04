@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import '../output.css'
 import { Spinner } from '@edx/paragon';
 
 export default class PageLoading extends Component {
@@ -25,7 +26,7 @@ export default class PageLoading extends Component {
             height: '50vh',
           }}
         >
-          <Spinner animation="border" variant="primary" screenReaderText={this.renderSrMessage()} />
+          <Spinner animation="border" variant="primary" className="tw-text-primaryCrimson" screenReaderText={this.renderSrMessage()} />
         </div>
       </div>
     );
