@@ -8,9 +8,6 @@ transifex_input = $(i18n)/transifex_input.json
 # This directory must match .babelrc .
 transifex_temp = ./temp/babel-plugin-react-intl
 
-precommit:
-	npm run lint
-	npm audit
 
 requirements:
 	npm install
