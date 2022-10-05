@@ -21,6 +21,6 @@ module.exports = {
   important: true,
   safelist: [
     'nav-link',
-    'menu'
+    'menu',
   ]
 }

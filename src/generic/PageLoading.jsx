@@ -26,7 +26,7 @@ export default class PageLoading extends Component {
             height: '50vh',
           }}
         >
-          <Spinner animation="border" variant="primary" className="tw-text-primaryCrimson" screenReaderText={this.renderSrMessage()} />
+          <Spinner animation="border" variant="" className="tw-text-primaryCrimson" screenReaderText={this.renderSrMessage()} />
         </div>
       </div>
     );

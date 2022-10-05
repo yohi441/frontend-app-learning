@@ -43,9 +43,11 @@ function StartOrResumeCourseCard({ intl }) {
   return (
     <Card className="mb-3 raised-card" data-testid="start-resume-card">
       <Card.Header
+
         title={hasVisitedCourse ? intl.formatMessage(messages.resumeBlurb) : intl.formatMessage(messages.startBlurb)}
         actions={(
           <Button
+            className="tw-bg-primaryNavy tw-border-primaryNavy focus:tw-ring-0 hover:tw-opacity-80 tw-text-white"
             variant="brand"
             block
             href={resumeCourseUrl}

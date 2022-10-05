@@ -69,7 +69,7 @@ function LoadedTabPage({
         streakDiscountCouponEnabled={streakDiscountCouponEnabled}
         verifiedMode={verifiedMode}
       />
-      <main id="main-content" className="d-flex flex-column flex-grow-1">
+      <main id="main-content" className="tw-font-nunito d-flex flex-column flex-grow-1">
         <AlertList
           topic="outline"
           className="mx-5 mt-3"
