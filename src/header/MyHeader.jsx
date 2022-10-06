@@ -60,9 +60,14 @@ export const MyHeader = (props) => {
 
                             </div>  
                         </a> 
+                        { props.courseNumber ?
                         <div className='tw-text-sm tw-font-semibold tw-hidden md:tw-block'>
                             {props.courseNumber}-{props.courseOrg}-{props.courseTitle}
+                        </div> :
+                         <div className='tw-text-sm tw-font-semibold tw-hidden md:tw-block'>
+                         Course Title
                         </div>
+                        }
                     </div>         
                     <div className='tw-flex tw-gap-4 tw-items-center'>
                         {/* help icon */}
