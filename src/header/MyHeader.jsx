@@ -6,9 +6,15 @@ import { DropDown } from './DropDown';
 import BurgerIcon from './BurgerIcon';
 import MobileDropDownLeft from './MobileDropDownLeft';
 import MobileDropDownRight from './MobileDropDownRight';
+import { getAuthenticatedHttpClient as getHttpClient } from '@edx/frontend-platform/auth';
 
 
-
+async function getAvatar(username){
+    const { data } = await getHttpClient().get(`${getConfig().LMS_BASE_URL}/api/user/v1/accounts/${username}`);
+    const imgUrl = await data.profile_image.image_url_small;
+    console.log(data)
+    return imgUrl
+}
 
 export const MyHeader = (props) => {
     let lmsBaseUrl = getConfig().LMS_BASE_URL;
@@ -17,8 +23,12 @@ export const MyHeader = (props) => {
     const defaultImg = `${lmsBaseUrl}/static/images/profiles/default_30.png`;
 
     const [data, setData] = useState([])
+    const [avatarImg, setAvatarImg] = useState();
 
     useEffect(()=>{
+        getAvatar(getAuthenticatedUser().username).then((value) => {
+            setAvatarImg(value)
+        });
         setData(getAuthenticatedUser())
     }, [data])
 
@@ -84,7 +94,7 @@ export const MyHeader = (props) => {
                         {/* mobile avatar dropdown*/}
                         <div onClick={ () => { setShowRightDrop(true) } } className='p-1 tw-relative md:tw-hidden hover:tw-bg-gray-200'>
                             <div className='tw-cursor-pointer tw-h-12 tw-w-12 tw-rounded-full tw-shadow-all tw-overflow-hidden'>
-                                <img className='tw-w-full tw-h-full tw-object-cover' src={data.profileImage?.imageUrlSmall ? data.profileImage.imageUrlSmall : defaultImg} alt="" />  
+                                <img className='tw-w-full tw-h-full tw-object-cover' src={avatarImg ? avatarImg : defaultImg} alt="" />  
                             </div>
                             
                         </div>
@@ -93,7 +103,7 @@ export const MyHeader = (props) => {
                         <div className='p-1 tw-hidden md:tw-block hover:tw-bg-gray-200'>
                             <div className='tw-cursor-pointer tw-h-12 tw-w-12 tw-rounded-full tw-shadow-all tw-overflow-hidden'>
                                 <a href={dashboardUrl}>
-                                    <img className='tw-w-full tw-h-full tw-object-cover' src={data.profileImage?.imageUrlSmall ? data.profileImage.imageUrlSmall : defaultImg} alt="" />
+                                    <img className='tw-w-full tw-h-full tw-object-cover' src={avatarImg ? avatarImg : defaultImg} alt="" />
                                 </a>
                             </div>
                         </div>
