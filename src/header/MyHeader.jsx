@@ -12,7 +12,6 @@ import { getAuthenticatedHttpClient as getHttpClient } from '@edx/frontend-platf
 async function getAvatar(username){
     const { data } = await getHttpClient().get(`${getConfig().LMS_BASE_URL}/api/user/v1/accounts/${username}`);
     const imgUrl = await data.profile_image.image_url_small;
-    console.log(data)
     return imgUrl
 }
 
@@ -23,12 +22,13 @@ export const MyHeader = (props) => {
     const defaultImg = `${lmsBaseUrl}/static/images/profiles/default_30.png`;
 
     const [data, setData] = useState([])
-    const [avatarImg, setAvatarImg] = useState();
-
-    useEffect(()=>{
+    const [avatarImg, setAvatarImg] = useState(() => {
         getAvatar(getAuthenticatedUser().username).then((value) => {
             setAvatarImg(value)
         });
+    });
+
+    useEffect(() => {  
         setData(getAuthenticatedUser())
     }, [data])
 
